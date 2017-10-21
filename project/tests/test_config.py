@@ -16,7 +16,7 @@ class TestDevelopmentConfig(TestCase):
         self.assertTrue(app.config['DEBUG'] is True)
         self.assertFalse(current_app is None)
         self.assertTrue(
-            app.config['SQLALCHEMY_DATABASE_URI'] == 
+            app.config['SQLALCHEMY_DATABASE_URI'] ==
             'postgres://postgres:postgres@users-db:5432/users_dev'
         )
 
@@ -32,7 +32,7 @@ class TestTestingConfig(TestCase):
         self.assertTrue(app.config['TESTING'])
         self.assertFalse(app.config['PRESERVE_CONTEXT_ON_EXCEPTION'])
         self.assertTrue(
-            app.config['SQLALCHEMY_DATABASE_URI'] == 
+            app.config['SQLALCHEMY_DATABASE_URI'] ==
             'postgres://postgres:postgres@users-db:5432/users_test'
         )
 
