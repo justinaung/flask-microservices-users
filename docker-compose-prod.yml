@@ -2,10 +2,11 @@ version: '3.1'
 
 services:
   nginx:
-    container_name: nginx
     build: ./nginx/
+    container_name: nginx
     image: flask-users-nginx
-    ports:
+    restart: always
+    ports: 
       - 80:80
     depends_on:
       - users-service
@@ -14,13 +15,12 @@ services:
     container_name: users-service
     build: .
     image: flask-users-service
-    volumes:
-      - .:/usr/src/app
-    ports:
-      - 5001:5000
+    command: gunicorn -b 0.0.0.0:5000 manage:app
+    expose:
+      - 5000
     environment:
-      - APP_SETTINGS=project.config.DevelopmentConfig
-      - DATABASE_URL=postgres://postgres:postgres@users-db:5432/users_dev
+      - APP_SETTINGS=project.config.ProductionConfig
+      - DATABASE_URL=postgres://postgres:postgres@users-db:5432/users_prod
       - DATABASE_TEST_URL=postgres://postgres:postgres@users-db:5432/users_test
     depends_on:
       - users-db
