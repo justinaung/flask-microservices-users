@@ -14,6 +14,7 @@ flask-sqlalchemy = "==2.2"
 flask-testing = "==0.6.2"
 "flake8" = "*"
 gunicorn = "==19.7.1"
+coverage = "*"
 
 
 [dev-packages]
